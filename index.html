@@ -1,8 +1,17 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INK ROOM — Global Student Support</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">  <!-- Favicon -->  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">  <style>
+  <title>INK ROOM — Global Student Support</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">
+
+  <style>
     :root {
       --dark: #020617;
       --navy: #020b1f;
@@ -179,45 +188,114 @@
       nav { top: 18px; }
       .hero { padding-top: 5rem; }
     }
-  </style></head><body>  <!-- HERO -->  <section class="hero">
+  </style>
+
+  <!-- APPLE-LEVEL ANIMATION STYLES -->
+  <style>
+    /* Smooth scrolling */
+    html { scroll-behavior: smooth; }
+
+    /* Scroll reveal system */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px) scale(0.98);
+      transition: opacity 0.9s cubic-bezier(.22,1,.36,1),
+                  transform 0.9s cubic-bezier(.22,1,.36,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Apple-style blur panels */
+    .glass {
+      backdrop-filter: blur(18px);
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+    }
+
+    /* Premium glow */
+    .glow-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-btn::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle, rgba(96,165,250,0.4), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .glow-btn:hover::after { opacity: 1; }
+
+    /* Floating parallax image */
+    .parallax {
+      transform: translateY(var(--parallax, 0));
+      transition: transform 0.2s linear;
+    }
+
+    /* Section spacing refinement */
+    .section-inner { position: relative; z-index: 2; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
     <nav>
       <div class="logo">INK ROOM</div>
       <a class="cta-btn" href="https://t.me/yourinkroom">Join</a>
-    </nav><div class="container">
-  <div class="hero-content">
-    <h1>A global study space that never closes.</h1>
-    <p>
-      INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
-    </p>
-    <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
-  </div>
-</div>
+    </nav>
 
-  </section>  <!-- MISSION -->  <section class="section">
-    <div class="section-inner">
+    <div class="container">
+      <div class="hero-content">
+        <h1>A global study space that never closes.</h1>
+        <p>
+          INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
+        </p>
+        <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="section-inner reveal glass" style="padding:2.5rem; border-radius:22px;">
       <h2>Our Mission</h2>
       <p>
         We believe no student should feel stuck, isolated, or unsupported while learning. INK ROOM exists to create a digital study environment where help is always within reach — regardless of country, school, or background. If you have internet access, you have a seat in the room.
       </p>
     </div>
-  </section>  <!-- COMMUNITY SECTION -->  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f);">
-    <div class="section-inner" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));"><div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
-    <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
-    <p>
-      INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
-    </p>
-    <p style="margin-top:0.8rem;">
-      Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
-    </p>
-  </div>
+  </section>
 
-  <div class="image-block" style="position:relative; animation: float 6s ease-in-out infinite;">
-    <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
-  </div>
+  <!-- COMMUNITY SECTION -->
+  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f); position:relative; overflow:hidden;">
+    <div class="section-inner reveal" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));">
+      
+      <div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
+        <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
+        <p>
+          INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
+        </p>
+        <p style="margin-top:0.8rem;">
+          Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
+        </p>
+      </div>
 
-</div>
+      <div class="image-block parallax" style="position:relative; animation: float 6s ease-in-out infinite;">
+        <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
+      </div>
 
-  </section>  <style>
+    </div>
+  </section>
+
+  <style>
     @keyframes fadeLeft {
       from { transform: translateX(-40px); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -228,13 +306,55 @@
       50% { transform: translateY(-12px); }
       100% { transform: translateY(0); }
     }
-  </style>  <!-- FINAL CTA -->  <section class="final-cta">
-    <div class="cta-box">
+  </style>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="cta-box reveal glass">
       <h3>Ready to join the room?</h3>
       <p>Become part of a global network of students helping each other grow.</p>
-      <a class="cta-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
+      <a class="cta-btn glow-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
     </div>
-  </section>  <footer>
+  </section>
+
+  <footer>
     Built for students, by students — <span>INK ROOM</span>
-  </footer></body>
+  </footer>
+
+
+  <!-- APPLE-LEVEL JS ANIMATIONS -->
+  <script>
+    // Scroll reveal observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Parallax scroll (very smooth)
+    const parallaxEls = document.querySelectorAll('.parallax');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY * 0.08;
+      parallaxEls.forEach(el => {
+        el.style.setProperty('--parallax', scrolled + 'px');
+      });
+    });
+
+    // Magnetic CTA effect (subtle Apple feel)
+    const btns = document.querySelectorAll('.cta-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
+  </script>
+</body>
 </html>
