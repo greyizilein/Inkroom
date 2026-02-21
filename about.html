@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About INK ROOM</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark: #020617;
+      --navy: #020b1f;
+      --blue: #3b82f6;
+      --soft-blue: #60a5fa;
+      --white: #ffffff;
+      --gray: #cbd5f5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      background: linear-gradient(rgba(2,6,23,0.75), rgba(2,6,23,0.9)),
+                  url("images/23624472_73z_2201_w009_n001_91a_p25_91.svg") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      position: relative;
+    }
+
+    .container { width: min(1000px, 92%); margin: auto; }
+
+    nav {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 620px;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 4rem 1.2rem;
+      background: linear-gradient(180deg,#020617,#01040f);
+    }
+
+    .text-block {
+      max-width: 750px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-block p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    /* VALUES GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.6);
+      padding: 1.5rem;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.25s ease;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .card h3 { margin-bottom: 0.5rem; }
+
+    .card p { color: var(--gray); font-size: 0.95rem; }
+
+    /* CTA */
+    .final {
+      padding: 3.5rem 1.2rem 4rem;
+      text-align: center;
+      background: var(--dark);
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg,#020617,#0f172a);
+      border-radius: 20px;
+      padding: 2.8rem 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      box-shadow: 0 12px 35px rgba(59,130,246,0.4);
+      transition: 0.25s ease;
+    }
+
+    .btn:hover { background: var(--soft-blue); transform: translateY(-2px); }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 2.5rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      background: var(--dark);
+    }
+
+    footer span { color: white; font-weight: 600; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <nav>
+      <div class="logo">INK ROOM</div>
+    </nav>
+
+    <div class="container">
+      <h1>A room built for students, by students.</h1>
+      <p>
+        INK ROOM was created to give students a space where they never have to feel stuck, isolated, or alone in their academic journey.
+      </p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section">
+    <div class="text-block">
+      <h2>Why INK ROOM exists</h2>
+      <p>
+        Around the world, millions of students struggle silently. Assignments pile up, motivation drops, and the pressure builds — often without support. INK ROOM started with a simple idea: what if students everywhere had a shared space to show up, ask for help, and grow together?
+      </p>
+      <p>
+        What began as a small initiative quickly became a growing global study space where learners connect, share knowledge, and stay accountable.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="text-block">
+      <h2>Our mission</h2>
+      <p>
+        To create a global digital study environment where students always have access to help, motivation, and community — no matter where they are.
+      </p>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;">What we stand for</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Accessibility</h3>
+          <p>Education support should be available to anyone with an internet connection.</p>
+        </div>
+        <div class="card">
+          <h3>Consistency</h3>
+          <p>Small daily effort beats occasional motivation. We build systems that help students stay consistent.</p>
+        </div>
+        <div class="card">
+          <h3>Community</h3>
+          <p>Learning is easier when you're not alone. Shared growth is powerful.</p>
+        </div>
+        <div class="card">
+          <h3>Growth</h3>
+          <p>INK ROOM is not just about passing exams — it's about building discipline and confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="cta-box">
+      <h2>Be part of the movement</h2>
+      <p style="color:var(--gray); margin-top:0.5rem;">
+        Join thousands of students building better study habits together.
+      </p>
+      <a class="btn" href="https://t.me/yourinkroom">Join INK ROOM</a>
+    </div>
+  </section>
+
+  <footer>
+    Built for students, by students — <span>INK ROOM</span>
+  </footer>
+
+</body>
+</html>
