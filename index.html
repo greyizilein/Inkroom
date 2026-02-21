@@ -1,327 +1,705 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>INK ROOM — Global Student Support</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INK ROOM — Global Student Support</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">  <!-- Favicon -->  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">  <style>
+    :root {
+      --dark: #020617;
+      --navy: #020b1f;
+      --blue: #3b82f6;
+      --soft-blue: #60a5fa;
+      --white: #ffffff;
+      --gray: #cbd5f5;
+      --muted: rgba(255,255,255,0.08);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-<link rel="icon" href="images/Screenshot_20260221-113036~2.png">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-<style>
-:root{
-  --dark:#020617;
-  --navy:#020b1f;
-  --blue:#3b82f6;
-  --soft:#60a5fa;
-  --white:#fff;
-  --gray:#cbd5f5;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+    .container { width: min(1100px, 92%); margin: auto; }
 
-body{
-  font-family:Inter,sans-serif;
-  background:var(--dark);
-  color:white;
-  overflow-x:hidden;
-}
+    /* FULL HERO BACKGROUND (KEEP) */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(2,6,23,0.75), rgba(2,6,23,0.85)),
+                  url("images/23624472_73z_2201_w009_n001_91a_p25_91.svg") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+      position: relative;
+    }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  background:
-    linear-gradient(rgba(2,6,23,.75),rgba(2,6,23,.85)),
-    url("images/23624472_73z_2201_w009_n001_91a_p25_91.svg") center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:2rem 1.2rem;
-  position:relative;
-}
+    /* NAV */
+    nav {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
 
-nav{
-  position:absolute;
-  top:25px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(1100px,92%);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
 
-.logo{
-  font-family:"Playfair Display",serif;
-  font-size:1.6rem;
-  letter-spacing:2px;
-}
+    /* HAMBURGER (replaces Join button) */
+    .hamburger {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(2,6,23,0.35);
+      backdrop-filter: blur(14px);
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    }
 
-/* CLEAN HAMBURGER */
-.hamburger{
-  width:46px;height:46px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(2,6,23,.35);
-  backdrop-filter:blur(12px);
-  display:grid;place-items:center;
-  cursor:pointer;
-}
-.hamburger span{
-  display:block;width:18px;height:2px;
-  background:white;margin:3px 0;border-radius:2px;
-}
+    .hamburger:hover { transform: translateY(-2px); background: rgba(2,6,23,0.5); }
 
-/* HERO TEXT */
-.container{width:min(1100px,92%);margin:auto;}
-.hero-content{
-  max-width:750px;
-  animation:fadeUp 1s ease forwards;
-  opacity:0;
-}
-@keyframes fadeUp{
-  from{transform:translateY(40px);opacity:0;}
-  to{transform:translateY(0);opacity:1;}
-}
-.hero h1{font-size:clamp(2.3rem,5vw,3.6rem);margin-bottom:1.2rem;}
-.hero p{color:var(--gray);margin-bottom:2rem;}
+    .hamburger .bars {
+      width: 18px;
+      height: 12px;
+      display: grid;
+      gap: 3px;
+    }
 
-.cta-btn{
-  background:var(--blue);
-  color:white;
-  padding:.75rem 1.3rem;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:600;
-  transition:.25s;
-}
-.cta-btn:hover{background:var(--soft);transform:translateY(-2px);}
+    .hamburger .bars span {
+      height: 2px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 999px;
+      display: block;
+      transform-origin: center;
+      transition: transform 0.35s cubic-bezier(.22,1,.36,1), opacity 0.25s ease;
+    }
 
-/* GLASS CARD */
-.glass{
-  backdrop-filter:blur(18px);
-  background:rgba(15,23,42,.55);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 25px 80px rgba(0,0,0,.45);
-}
+    .hamburger.is-open .bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+    .hamburger.is-open .bars span:nth-child(2) { opacity: 0; }
+    .hamburger.is-open .bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(60px);
-  transition:.9s cubic-bezier(.22,1,.36,1);
-}
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+    /* HERO TEXT */
+    .hero-content {
+      max-width: 750px;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+      z-index: 2;
+    }
 
-/* SECTIONS */
-.section{
-  padding:4rem 1.2rem;
-  background:linear-gradient(180deg,#020617,#020b1f);
-}
-.section-inner{
-  width:min(900px,92%);
-  margin:auto;
-  text-align:center;
-}
+    @keyframes fadeUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-/* COMMUNITY */
-.community{
-  background:linear-gradient(180deg,#020b1f,#01040f);
-}
-.community-inner{
-  display:grid;
-  gap:2.5rem;
-  align-items:center;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-.community img{
-  width:100%;
-  border-radius:18px;
-  box-shadow:0 30px 70px rgba(0,0,0,.5);
-  animation:float 6s ease-in-out infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-12px);}
-  100%{transform:translateY(0);}
-}
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.6rem);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+    }
 
-/* PRICING */
-.pricing{
-  padding:4rem 1.2rem;
-  background:#01040f;
-}
-.pricing h2{text-align:center;margin-bottom:1rem;}
-.pricing-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-  max-width:1100px;margin:auto;
-}
-.card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:1.5rem;
-}
-.card img{width:100%;border-radius:12px;margin-bottom:1rem;}
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
 
-/* FINAL CTA */
-.final-cta{padding:3rem 1.2rem 4rem;text-align:center;}
-.cta-box{
-  background:linear-gradient(135deg,#020617,#0f172a);
-  border-radius:18px;
-  padding:2.8rem 2rem;
-  max-width:700px;margin:auto;
-}
+    .cta-btn {
+      background: var(--blue);
+      color: white;
+      padding: 0.75rem 1.3rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 25px rgba(59,130,246,0.35);
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
 
-footer{text-align:center;padding:2rem 0;color:#94a3b8;}
+    .cta-btn:hover { background: var(--soft-blue); transform: translateY(-2px); }
 
-/* CLEAN MENU */
-.overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);
-  opacity:0;pointer-events:none;transition:.3s;z-index:40;
-}
-.overlay.show{opacity:1;pointer-events:auto;}
+    /* APPLE-LEVEL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px) scale(0.98);
+      transition: opacity 0.9s cubic-bezier(.22,1,.36,1),
+                  transform 0.9s cubic-bezier(.22,1,.36,1);
+    }
 
-.menu{
-  position:fixed;top:0;right:0;height:100vh;
-  width:min(320px,85vw);
-  background:rgba(2,6,23,.95);
-  backdrop-filter:blur(18px);
-  transform:translateX(100%);
-  transition:.35s;z-index:50;
-  padding:2rem;
-}
-.menu.open{transform:translateX(0);}
-.menu h3{margin-bottom:1rem;}
-.menu a{
-  display:block;padding:.9rem 0;
-  color:white;text-decoration:none;font-size:1.1rem;
-}
-.menu a:hover{color:var(--soft);}
-</style>
-</head>
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
 
-<body>
+    .glass {
+      backdrop-filter: blur(18px);
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+    }
 
-<!-- CLEAN MENU -->
+    .glow-btn::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle, rgba(96,165,250,0.4), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .glow-btn:hover::after { opacity: 1; }
+
+    .parallax {
+      transform: translateY(var(--parallax, 0));
+      transition: transform 0.2s linear;
+    }
+
+    /* SECTION BELOW HERO */
+    .section {
+      padding: 4rem 1.2rem;
+      background: linear-gradient(180deg, #020617, #020b1f);
+    }
+
+    .section-inner {
+      width: min(900px, 92%);
+      margin: auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section h2 { font-size: 1.9rem; margin-bottom: 1.2rem; }
+    .section p { color: var(--gray); line-height: 1.7; }
+
+    /* COMMUNITY */
+    @keyframes fadeLeft {
+      from { transform: translateX(-40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* PRICING (sample-inspired cards) */
+    .pricing {
+      padding: 4.5rem 1.2rem;
+      background: linear-gradient(180deg, #01040f, #020617);
+    }
+
+    .pricing-head {
+      width: min(950px, 92%);
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .pricing-head h2 { font-size: 2.05rem; }
+
+    .pricing-head p { color: var(--gray); max-width: 740px; margin: 0.8rem auto 0; }
+
+    .pricing-grid {
+      width: min(1100px, 92%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .menu-card {
+      border-radius: 22px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, border 0.25s ease;
+      overflow: hidden;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      border: 1px solid rgba(96,165,250,0.25);
+    }
+
+    .menu-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 4px 4px 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag.green { background: rgba(34,197,94,0.14); border-color: rgba(34,197,94,0.25); }
+    .tag.purple { background: rgba(168,85,247,0.14); border-color: rgba(168,85,247,0.25); }
+    .tag.blue { background: rgba(59,130,246,0.14); border-color: rgba(59,130,246,0.25); }
+
+    .card-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      background: rgba(2,6,23,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 86%;
+      height: 86%;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 30px rgba(0,0,0,0.35));
+      transform: translateY(6px);
+      transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+    }
+
+    .menu-card:hover .card-media img { transform: translateY(0); }
+
+    .card-body { padding: 14px 6px 8px; }
+
+    .card-title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 2px 0 8px;
+    }
+
+    .card-desc {
+      color: var(--gray);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px;
+    }
+
+    .card-price {
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .select-btn {
+      background: transparent;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.65rem 1.05rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, border 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 112px;
+    }
+
+    .select-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(96,165,250,0.35);
+    }
+
+    .menu-card.featured {
+      background: linear-gradient(180deg, rgba(59,130,246,0.11), rgba(255,255,255,0.04));
+      border-color: rgba(59,130,246,0.25);
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 3rem 1.2rem 4rem;
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .cta-box {
+      border-radius: 18px;
+      padding: 2.8rem 2rem;
+      max-width: 700px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(59,130,246,0.4), transparent);
+      top: -60px;
+      right: -60px;
+      animation: glow 6s linear infinite;
+    }
+
+    @keyframes glow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .cta-box h3 { font-size: 1.7rem; margin-bottom: 0.6rem; }
+    .cta-box p { color: var(--gray); margin-bottom: 1.5rem; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 2.5rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      background: var(--dark);
+    }
+
+    footer span { color: white; font-weight: 600; }
+
+    /* SIMPLE SLIDE MENU (pages only) */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.48);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 40;
+    }
+
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    .menu-panel {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      height: calc(100vh - 32px);
+      width: min(360px, calc(100vw - 32px));
+      transform: translateX(110%);
+      transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+      border-radius: 22px;
+      z-index: 50;
+      overflow: hidden;
+    }
+
+    .menu-panel.open { transform: translateX(0); }
+
+    .menu-inner {
+      height: 100%;
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+    }
+
+    .menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 10px 6px;
+    }
+
+    .menu-top strong { letter-spacing: 0.02em; }
+    .menu-top span { color: rgba(203,213,245,0.85); font-size: 0.92rem; }
+
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .close-btn:hover { transform: rotate(6deg); }
+
+    .menu-links {
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      gap: 8px;
+    }
+
+    .menu-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 12px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid transparent;
+      transition: background 0.25s ease, transform 0.25s ease, border 0.25s ease;
+    }
+
+    .menu-links a:hover {
+      background: rgba(59,130,246,0.14);
+      border: 1px solid rgba(59,130,246,0.25);
+      transform: translateX(-2px);
+    }
+
+    .menu-links small { color: rgba(203,213,245,0.82); }
+
+    .menu-bottom {
+      color: rgba(203,213,245,0.78);
+      font-size: 0.9rem;
+      padding: 0 10px 8px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { top: 18px; }
+      .hero { padding-top: 5rem; }
+      .menu-panel { top: 12px; right: 12px; height: calc(100vh - 24px); width: calc(100vw - 24px); }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style></head><body>  <!-- MENU (pages only) -->  <div class="overlay" id="overlay" aria-hidden="true"></div>  <aside class="menu-panel glass" id="menu" aria-hidden="true" role="dialog" aria-label="INK ROOM menu">
+  <!-- CLEAN MENU -->
 <div class="overlay" id="overlay"></div>
-<aside class="menu" id="menu">
-  <h3>INK ROOM</h3>
-  <a href="#top">Home</a>
-  <a href="about.html">About</a>
-  <a href="#pricing">Pricing</a>
-  <a href="payments.html">Payments</a>
-  <a href="https://t.me/yourinkroom">Telegram</a>
+
+<aside class="menu-panel glass" id="menu">
+  <div class="menu-inner">
+
+    <div class="menu-top">
+      <strong>INK ROOM</strong>
+      <button class="close-btn" id="closeMenu">✕</button>
+    </div>
+
+    <nav class="menu-links">
+      <a href="#top">Home</a>
+      <a href="about.html">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="payments.html">Payments</a>
+      <a href="https://t.me/yourinkroom">Telegram</a>
+    </nav>
+
+  </div>
 </aside>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <nav>
-    <div class="logo">INK ROOM</div>
-    <div class="hamburger" id="openMenu">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <div class="container">
-    <div class="hero-content">
-      <h1>A global study space that never closes.</h1>
-      <p>
-        INK ROOM is where students from anywhere in the world come to get help,
-        finish assignments, ask questions, and stay accountable.
-      </p>
-      <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION -->
-<section class="section">
-  <div class="section-inner reveal glass" style="padding:2.5rem;border-radius:22px;">
-    <h2>Our Mission</h2>
+  </aside>  <!-- HERO -->  <section class="hero" id="top">
+    <nav>
+      <div class="logo">INK ROOM</div>
+      <button class="hamburger" id="openMenu" aria-label="Open menu">
+        <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </nav><div class="container">
+  <div class="hero-content">
+    <h1>A global study space that never closes.</h1>
     <p>
-      We believe no student should feel stuck or unsupported.
-      If you have internet access, you have a seat in the room.
+      INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
+    </p>
+    <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+  </div>
+</div>
+
+  </section>  <!-- MISSION (restored) -->  <section class="section">
+    <div class="section-inner reveal glass" style="padding:2.5rem; border-radius:22px;">
+      <h2>Our Mission</h2>
+      <p>
+        We believe no student should feel stuck, isolated, or unsupported while learning. INK ROOM exists to create a digital study environment where help is always within reach — regardless of country, school, or background. If you have internet access, you have a seat in the room.
+      </p>
+    </div>
+  </section>  <!-- COMMUNITY (restored) -->  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f); position:relative; overflow:hidden;">
+    <div class="section-inner reveal" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));"><div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
+    <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
+    <p>
+      INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
+    </p>
+    <p style="margin-top:0.8rem;">
+      Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
     </p>
   </div>
-</section>
 
-<!-- COMMUNITY -->
-<section class="section community">
-  <div class="section-inner community-inner reveal">
-    <div>
-      <h2>A space built for real students</h2>
-      <p>Study together, stay accountable, and grow daily.</p>
-    </div>
-    <img src="images/Screenshot_20260221-113036~2.png">
+  <div class="image-block parallax" style="position:relative; animation: float 6s ease-in-out infinite;">
+    <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
   </div>
-</section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <h2>Pricing</h2>
-  <div class="pricing-grid">
-    <div class="card">
-      <img src="images/33602589_8071612.svg">
-      <h3>Free</h3>
-      <p>Join instantly.</p>
-      <a class="cta-btn" href="https://t.me/yourinkroom">Select</a>
+</div>
+
+  </section>  <!-- PRICING (added, sample-inspired) -->  <section class="pricing" id="pricing">
+    <div class="pricing-head reveal">
+      <h2>Pricing</h2>
+      <p>
+        Start free. Upgrade only if you want extra structure, premium resources, or you want to support the mission.
+      </p>
+    </div><div class="pricing-grid">
+  <article class="menu-card reveal">
+    <div class="menu-tags">
+      <span class="tag green">Free</span>
+      <span class="tag blue">New</span>
     </div>
-
-    <div class="card">
-      <img src="images/23624472_73z_2201_w009_n001_91a_p25_91.svg">
-      <h3>Pro Support</h3>
-      <p>Premium resources.</p>
-      <a class="cta-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+    <div class="card-media">
+      <img src="images/33602589_8071612.svg" alt="Free plan illustration">
     </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20260221-113036~2.png">
-      <h3>Sponsor</h3>
-      <p>Support the mission.</p>
-      <a class="cta-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+    <div class="card-body">
+      <div class="card-title">Community Access</div>
+      <div class="card-desc">Join the Telegram room, ask questions, get help, and stay accountable with students worldwide.</div>
     </div>
-  </div>
-</section>
+    <div class="card-foot">
+      <div class="card-price">$0</div>
+      <a class="select-btn" href="https://t.me/yourinkroom">Select</a>
+    </div>
+  </article>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="cta-box">
-    <h3>Ready to join the room?</h3>
-    <p>Become part of a global network of students helping each other grow.</p>
-    <a class="cta-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
-  </div>
-</section>
+  <article class="menu-card reveal featured">
+    <div class="menu-tags">
+      <span class="tag purple">Popular</span>
+      <span class="tag blue">Support</span>
+    </div>
+    <div class="card-media">
+      <img src="images/23624472_73z_2201_w009_n001_91a_p25_91.svg" alt="Pro plan illustration">
+    </div>
+    <div class="card-body">
+      <div class="card-title">Pro Study Mode</div>
+      <div class="card-desc">Support INK ROOM and unlock structured study prompts, priority drops, and premium bundles.</div>
+    </div>
+    <div class="card-foot">
+      <div class="card-price">Any</div>
+      <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+    </div>
+  </article>
 
-<footer>
-Built for students, by students — <span style="color:white">INK ROOM</span>
-</footer>
+  <article class="menu-card reveal">
+    <div class="menu-tags">
+      <span class="tag blue">Sponsor</span>
+    </div>
+    <div class="card-media">
+      <img src="images/Screenshot_20260221-113036~2.png" alt="Sponsor plan visual" style="width:100%; height:100%; object-fit: cover; border-radius: 18px;">
+    </div>
+    <div class="card-body">
+      <div class="card-title">Back the Mission</div>
+      <div class="card-desc">Help fund tutorials, tools, and future features so more students can get support globally.</div>
+    </div>
+    <div class="card-foot">
+      <div class="card-price">Any</div>
+      <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+    </div>
+  </article>
+</div>
 
-<script>
-// reveal
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="cta-box reveal glass">
+      <h3>Ready to join the room?</h3>
+      <p>Become part of a global network of students helping each other grow.</p>
+      <a class="cta-btn glow-btn" href="https://t.me/yourinkroom">
+        Open Telegram Channel
+      </a>
+    </div>
+  </section>
 
-// menu
-const menu=document.getElementById('menu');
-const overlay=document.getElementById('overlay');
-document.getElementById('openMenu').onclick=()=>{
-  menu.classList.toggle('open');
-  overlay.classList.toggle('show');
-};
-overlay.onclick=()=>{
-  menu.classList.remove('open');
-  overlay.classList.remove('show');
-};
-</script>
+  <footer>
+    Built for students, by students — <span>INK ROOM</span>
+  </footer>
 
+  <!-- APPLE-LEVEL JS ANIMATIONS -->
+  <script>
+    // Scroll reveal observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Parallax scroll
+    const parallaxEls = document.querySelectorAll('.parallax');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY * 0.08;
+      parallaxEls.forEach(el =>
+        el.style.setProperty('--parallax', scrolled + 'px')
+      );
+    });
+
+    // Magnetic CTA effect
+    const btns = document.querySelectorAll('.cta-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
+
+    // MENU LOGIC (hamburger)
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openPanel() {
+      menu.classList.add('open');
+      overlay.classList.add('show');
+      openMenu.classList.add('is-open');
+    }
+
+    function closePanel() {
+      menu.classList.remove('open');
+      overlay.classList.remove('show');
+      openMenu.classList.remove('is-open');
+    }
+
+    openMenu.addEventListener('click', () => {
+      menu.classList.contains('open') ? closePanel() : openPanel();
+    });
+
+    closeMenu?.addEventListener('click', closePanel);
+    overlay?.addEventListener('click', closePanel);
+
+    menu?.querySelectorAll('[data-close]')
+      .forEach(a => a.addEventListener('click', closePanel));
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePanel();
+    });
+  </script>
 </body>
 </html>
