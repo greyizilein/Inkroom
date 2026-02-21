@@ -497,27 +497,53 @@
       html { scroll-behavior: auto; }
     }
   </style></head><body>  <!-- MENU (pages only) -->  <div class="overlay" id="overlay" aria-hidden="true"></div>  <aside class="menu-panel glass" id="menu" aria-hidden="true" role="dialog" aria-label="INK ROOM menu">
-  <!-- CLEAN MENU -->
-<div class="overlay" id="overlay"></div>
+    <div class="menu-inner">
+      <div class="menu-top">
+        <div style="display:grid; gap:2px;">
+          <strong>INK ROOM</strong>
+          <span>Menu</span>
+        </div>
+        <button class="close-btn" id="closeMenu" aria-label="Close menu">✕</button>
+      </div><nav class="menu-links" aria-label="Pages">
+    <a href="#top" data-close>
+      <div>
+        <div><strong>Home</strong></div>
+        <small>Back to the top</small>
+      </div>
+      <span>›</span>
+    </a>
+    <a href="about.html" data-close>
+      <div>
+        <div><strong>About</strong></div>
+        <small>Why INK ROOM exists</small>
+      </div>
+      <span>›</span>
+    </a>
+    <a href="#pricing" data-close>
+      <div>
+        <div><strong>Pricing</strong></div>
+        <small>Free + support tiers</small>
+      </div>
+      <span>›</span>
+    </a>
+    <a href="payments.html" data-close>
+      <div>
+        <div><strong>Payments</strong></div>
+        <small>Support INK ROOM</small>
+      </div>
+      <span>›</span>
+    </a>
+    <a href="https://t.me/yourinkroom" data-close>
+      <div>
+        <div><strong>Telegram</strong></div>
+        <small>Join the community</small>
+      </div>
+      <span>›</span>
+    </a>
+  </nav>
 
-<aside class="menu-panel glass" id="menu">
-  <div class="menu-inner">
-
-    <div class="menu-top">
-      <strong>INK ROOM</strong>
-      <button class="close-btn" id="closeMenu">✕</button>
-    </div>
-
-    <nav class="menu-links">
-      <a href="#top">Home</a>
-      <a href="about.html">About</a>
-      <a href="#pricing">Pricing</a>
-      <a href="payments.html">Payments</a>
-      <a href="https://t.me/yourinkroom">Telegram</a>
-    </nav>
-
-  </div>
-</aside>
+  <div class="menu-bottom">Tap outside (or press Esc) to close.</div>
+</div>
 
   </aside>  <!-- HERO -->  <section class="hero" id="top">
     <nav>
