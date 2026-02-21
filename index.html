@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INK ROOM — Global Student Support</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">  <style>
+  <title>INK ROOM — Global Student Support</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">  <!-- Favicon -->  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">  <style>
     :root {
       --ink-black: #0f172a;
       --deep-ink: #020617;
@@ -13,35 +13,26 @@
       --card: #ffffff;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background: var(--light-bg);
       color: var(--ink-black);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .container {
-      width: min(1100px, 92%);
-      margin: auto;
-    }
+    .container { width: min(1100px, 92%); margin: auto; }
 
     header {
       background: linear-gradient(135deg, var(--deep-ink), var(--ink-black));
       color: white;
-      padding: 2rem 0;
+      padding: 2rem 0 3rem;
+      position: relative;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    nav { display: flex; justify-content: space-between; align-items: center; }
 
     .logo {
       font-family: 'Playfair Display', serif;
@@ -59,36 +50,30 @@
       transition: 0.25s ease;
     }
 
-    .cta-btn:hover {
-      background: var(--soft-blue);
-      transform: translateY(-1px);
-    }
+    .cta-btn:hover { background: var(--soft-blue); transform: translateY(-2px); }
 
     /* Hero */
     .hero {
-      padding: 4rem 0 5rem;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      padding-top: 3rem;
     }
 
-    .hero h1 {
+    .hero-text h1 {
       font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 700;
       margin-bottom: 1rem;
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 2rem;
+    .hero-text p {
+      max-width: 550px;
+      margin-bottom: 1.8rem;
       color: #cbd5f5;
-      font-size: 1.05rem;
     }
 
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .secondary-btn {
       background: transparent;
@@ -97,19 +82,31 @@
       padding: 0.7rem 1.2rem;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 500;
     }
 
-    /* Section */
-    section {
-      padding: 4rem 0;
+    /* Floating illustration */
+    .hero-image {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 1.9rem;
-      margin-bottom: 2.5rem;
+    .hero-image img {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: auto;
+      filter: drop-shadow(0 25px 40px rgba(0,0,0,0.25));
     }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0px); }
+    }
+
+    section { padding: 4rem 0; }
+
+    .section-title { text-align: center; font-size: 1.9rem; margin-bottom: 2.5rem; }
 
     /* Features */
     .features {
@@ -124,20 +121,38 @@
       border-radius: 14px;
       box-shadow: 0 10px 25px rgba(2, 6, 23, 0.05);
       transition: 0.25s ease;
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 35px rgba(2, 6, 23, 0.08);
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.2s; }
+    .card:nth-child(4) { animation-delay: 0.3s; }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .card h3 {
-      margin-bottom: 0.5rem;
+    .card:hover { transform: translateY(-6px); }
+
+    .card p { color: var(--text-gray); font-size: 0.95rem; }
+
+    /* Image divider */
+    .divider {
+      text-align: center;
+      margin-top: 2rem;
     }
 
-    .card p {
-      color: var(--text-gray);
-      font-size: 0.95rem;
+    .divider img {
+      max-width: 300px;
+      opacity: 0.9;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
     }
 
     /* Mission */
@@ -152,7 +167,6 @@
       margin: auto;
       text-align: center;
       color: var(--text-gray);
-      font-size: 1.05rem;
     }
 
     /* CTA */
@@ -162,15 +176,24 @@
       text-align: center;
       border-radius: 16px;
       padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .cta h2 {
-      margin-bottom: 0.8rem;
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(96,165,250,0.35), transparent);
+      top: -50px;
+      right: -50px;
+      animation: glow 6s linear infinite;
     }
 
-    .cta p {
-      color: #cbd5f5;
-      margin-bottom: 1.4rem;
+    @keyframes glow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     footer {
@@ -180,31 +203,34 @@
       color: #94a3b8;
     }
 
-    footer span {
-      color: var(--ink-black);
-      font-weight: 600;
-    }
+    footer span { color: var(--ink-black); font-weight: 600; }
 
-    @media (max-width: 600px) {
-      .hero {
-        padding: 3rem 0 4rem;
-      }
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-text p { margin-inline: auto; }
     }
   </style></head><body>
   <header>
     <div class="container">
       <nav>
         <div class="logo">INK ROOM</div>
-        <a class="cta-btn" href="#join">Join Telegram</a>
+        <a class="cta-btn" href="https://t.me/yourinkroom">Join Telegram</a>
       </nav><div class="hero">
-    <h1>A global study space that never closes.</h1>
-    <p>
-      INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
-    </p>
+    <div class="hero-text">
+      <h1>A global study space that never closes.</h1>
+      <p>
+        INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
+      </p>
 
-    <div class="hero-actions">
-      <a class="cta-btn" href="#join">Enter the Room</a>
-      <a class="secondary-btn" href="#mission">Learn More</a>
+      <div class="hero-actions">
+        <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+        <a class="secondary-btn" href="#mission">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="images/23624472_73z_2201_w009_n001_91a_p25_91.svg" alt="Study illustration">
     </div>
   </div>
 </div>
@@ -229,8 +255,11 @@
           <h3>Accountability</h3>
           <p>Stay disciplined with a community that encourages progress, not pressure.</p>
         </div>
-      </div>
-    </div>
+      </div><div class="divider">
+    <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM visual">
+  </div>
+</div>
+
   </section>  <section id="mission" class="mission">
     <div class="container">
       <h2 class="section-title">Our Mission</h2>
@@ -238,14 +267,12 @@
         We believe no student should feel stuck, isolated, or unsupported while learning. INK ROOM exists to create a digital study environment where help is always within reach — regardless of country, school, or background. If you have internet access, you have a seat in the room.
       </p>
     </div>
-  </section>  <section id="join">
+  </section>  <section>
     <div class="container">
       <div class="cta">
         <h2>Ready to join the room?</h2>
-        <p>
-          Become part of a global network of students helping each other grow.
-        </p>
-        <a class="cta-btn" href="#">Open Telegram Channel</a>
+        <p>Become part of a global network of students helping each other grow.</p>
+        <a class="cta-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
       </div>
     </div>
   </section>  <footer>
