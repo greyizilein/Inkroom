@@ -386,109 +386,66 @@
 
     footer span { color: white; font-weight: 600; }
 
-    /* SIMPLE SLIDE MENU (pages only) */
+    /* ===== ONLY MENU CHANGED: BOTTOM SHEET (WHITE) ===== */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.48);
+      background: rgba(0,0,0,0.45);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
       z-index: 40;
     }
-
     .overlay.show { opacity: 1; pointer-events: auto; }
 
-    .menu-panel {
+    .bottom-sheet {
       position: fixed;
-      top: 16px;
-      right: 16px;
-      height: calc(100vh - 32px);
-      width: min(360px, calc(100vw - 32px));
-      transform: translateX(110%);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ffffff;
+      border-radius: 26px 26px 0 0;
+      padding: 18px 18px 24px;
+      transform: translateY(100%);
       transition: transform 0.45s cubic-bezier(.22,1,.36,1);
-      border-radius: 22px;
       z-index: 50;
-      overflow: hidden;
+      box-shadow: 0 -20px 60px rgba(0,0,0,0.35);
+    }
+    .bottom-sheet.open { transform: translateY(0); }
+
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      margin: 0 auto 16px;
     }
 
-    .menu-panel.open { transform: translateX(0); }
-
-    .menu-inner {
-      height: 100%;
-      padding: 18px;
+    .sheet-grid {
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
     }
 
-    .menu-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 10px 6px;
-    }
-
-    .menu-top strong { letter-spacing: 0.02em; }
-    .menu-top span { color: rgba(203,213,245,0.85); font-size: 0.92rem; }
-
-    .close-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
-      color: white;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: transform 0.25s ease;
-    }
-
-    .close-btn:hover { transform: rotate(6deg); }
-
-    .menu-links {
-      padding: 10px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      display: grid;
-      gap: 8px;
-    }
-
-    .menu-links a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 14px 12px;
-      border-radius: 16px;
+    .sheet-grid a {
       text-decoration: none;
-      color: rgba(255,255,255,0.92);
-      border: 1px solid transparent;
-      transition: background 0.25s ease, transform 0.25s ease, border 0.25s ease;
+      color: #111;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .menu-links a:hover {
-      background: rgba(59,130,246,0.14);
-      border: 1px solid rgba(59,130,246,0.25);
-      transform: translateX(-2px);
-    }
-
-    .menu-links small { color: rgba(203,213,245,0.82); }
-
-    .menu-bottom {
-      color: rgba(203,213,245,0.78);
-      font-size: 0.9rem;
-      padding: 0 10px 8px;
+    .sheet-grid span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 6px;
+      filter: grayscale(100%);
     }
 
     /* MOBILE */
     @media (max-width: 600px) {
       nav { top: 18px; }
       .hero { padding-top: 5rem; }
-      .menu-panel { top: 12px; right: 12px; height: calc(100vh - 24px); width: calc(100vw - 24px); }
     }
 
     /* Reduced motion */
@@ -496,164 +453,147 @@
       * { animation: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
     }
-  </style></head><body>  <!-- MENU (pages only) -->  <div class="overlay" id="overlay" aria-hidden="true"></div>  <aside class="menu-panel glass" id="menu" aria-hidden="true" role="dialog" aria-label="INK ROOM menu">
-    <div class="menu-inner">
-      <div class="menu-top">
-        <div style="display:grid; gap:2px;">
-          <strong>INK ROOM</strong>
-          <span>Menu</span>
-        </div>
-        <button class="close-btn" id="closeMenu" aria-label="Close menu">✕</button>
-      </div><nav class="menu-links" aria-label="Pages">
-    <a href="#top" data-close>
-      <div>
-        <div><strong>Home</strong></div>
-        <small>Back to the top</small>
-      </div>
-      <span>›</span>
-    </a>
-    <a href="about.html" data-close>
-      <div>
-        <div><strong>About</strong></div>
-        <small>Why INK ROOM exists</small>
-      </div>
-      <span>›</span>
-    </a>
-    <a href="#pricing" data-close>
-      <div>
-        <div><strong>Pricing</strong></div>
-        <small>Free + support tiers</small>
-      </div>
-      <span>›</span>
-    </a>
-    <a href="payments.html" data-close>
-      <div>
-        <div><strong>Payments</strong></div>
-        <small>Support INK ROOM</small>
-      </div>
-      <span>›</span>
-    </a>
-    <a href="https://t.me/yourinkroom" data-close>
-      <div>
-        <div><strong>Telegram</strong></div>
-        <small>Join the community</small>
-      </div>
-      <span>›</span>
-    </a>
-  </nav>
+  </style>
+</head>
 
-  <div class="menu-bottom">Tap outside (or press Esc) to close.</div>
-</div>
+<body>
 
-  </aside>  <!-- HERO -->  <section class="hero" id="top">
+  <!-- MENU (bottom sheet) -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <div class="bottom-sheet" id="menu" aria-hidden="true" role="dialog" aria-label="INK ROOM menu">
+    <div class="sheet-handle"></div>
+    <div class="sheet-grid">
+      <a href="#top"><span>🏠</span>Home</a>
+      <a href="about.html"><span>ℹ️</span>About</a>
+      <a href="#pricing"><span>💎</span>Pricing</a>
+      <a href="payments.html"><span>💳</span>Payments</a>
+      <a href="https://t.me/yourinkroom"><span>✈️</span>Telegram</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
     <nav>
       <div class="logo">INK ROOM</div>
       <button class="hamburger" id="openMenu" aria-label="Open menu">
         <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
-    </nav><div class="container">
-  <div class="hero-content">
-    <h1>A global study space that never closes.</h1>
-    <p>
-      INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
-    </p>
-    <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
-  </div>
-</div>
+    </nav>
 
-  </section>  <!-- MISSION (restored) -->  <section class="section">
+    <div class="container">
+      <div class="hero-content">
+        <h1>A global study space that never closes.</h1>
+        <p>
+          INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
+        </p>
+        <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION (restored) -->
+  <section class="section">
     <div class="section-inner reveal glass" style="padding:2.5rem; border-radius:22px;">
       <h2>Our Mission</h2>
       <p>
         We believe no student should feel stuck, isolated, or unsupported while learning. INK ROOM exists to create a digital study environment where help is always within reach — regardless of country, school, or background. If you have internet access, you have a seat in the room.
       </p>
     </div>
-  </section>  <!-- COMMUNITY (restored) -->  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f); position:relative; overflow:hidden;">
-    <div class="section-inner reveal" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));"><div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
-    <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
-    <p>
-      INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
-    </p>
-    <p style="margin-top:0.8rem;">
-      Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
-    </p>
-  </div>
+  </section>
 
-  <div class="image-block parallax" style="position:relative; animation: float 6s ease-in-out infinite;">
-    <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
-  </div>
+  <!-- COMMUNITY (restored) -->
+  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f); position:relative; overflow:hidden;">
+    <div class="section-inner reveal" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));">
 
-</div>
+      <div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
+        <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
+        <p>
+          INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
+        </p>
+        <p style="margin-top:0.8rem;">
+          Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
+        </p>
+      </div>
 
-  </section>  <!-- PRICING (added, sample-inspired) -->  <section class="pricing" id="pricing">
+      <div class="image-block parallax" style="position:relative; animation: float 6s ease-in-out infinite;">
+        <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING (added, sample-inspired) -->
+  <section class="pricing" id="pricing">
     <div class="pricing-head reveal">
       <h2>Pricing</h2>
       <p>
         Start free. Upgrade only if you want extra structure, premium resources, or you want to support the mission.
       </p>
-    </div><div class="pricing-grid">
-  <article class="menu-card reveal">
-    <div class="menu-tags">
-      <span class="tag green">Free</span>
-      <span class="tag blue">New</span>
     </div>
-    <div class="card-media">
-      <img src="images/33602589_8071612.svg" alt="Free plan illustration">
-    </div>
-    <div class="card-body">
-      <div class="card-title">Community Access</div>
-      <div class="card-desc">Join the Telegram room, ask questions, get help, and stay accountable with students worldwide.</div>
-    </div>
-    <div class="card-foot">
-      <div class="card-price">$0</div>
-      <a class="select-btn" href="https://t.me/yourinkroom">Select</a>
-    </div>
-  </article>
 
-  <article class="menu-card reveal featured">
-    <div class="menu-tags">
-      <span class="tag purple">Popular</span>
-      <span class="tag blue">Support</span>
-    </div>
-    <div class="card-media">
-      <img src="images/23624472_73z_2201_w009_n001_91a_p25_91.svg" alt="Pro plan illustration">
-    </div>
-    <div class="card-body">
-      <div class="card-title">Pro Study Mode</div>
-      <div class="card-desc">Support INK ROOM and unlock structured study prompts, priority drops, and premium bundles.</div>
-    </div>
-    <div class="card-foot">
-      <div class="card-price">Any</div>
-      <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
-    </div>
-  </article>
+    <div class="pricing-grid">
+      <article class="menu-card reveal">
+        <div class="menu-tags">
+          <span class="tag green">Free</span>
+          <span class="tag blue">New</span>
+        </div>
+        <div class="card-media">
+          <img src="images/33602589_8071612.svg" alt="Free plan illustration">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Community Access</div>
+          <div class="card-desc">Join the Telegram room, ask questions, get help, and stay accountable with students worldwide.</div>
+        </div>
+        <div class="card-foot">
+          <div class="card-price">$0</div>
+          <a class="select-btn" href="https://t.me/yourinkroom">Select</a>
+        </div>
+      </article>
 
-  <article class="menu-card reveal">
-    <div class="menu-tags">
-      <span class="tag blue">Sponsor</span>
+      <article class="menu-card reveal featured">
+        <div class="menu-tags">
+          <span class="tag purple">Popular</span>
+          <span class="tag blue">Support</span>
+        </div>
+        <div class="card-media">
+          <img src="images/23624472_73z_2201_w009_n001_91a_p25_91.svg" alt="Pro plan illustration">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Pro Study Mode</div>
+          <div class="card-desc">Support INK ROOM and unlock structured study prompts, priority drops, and premium bundles.</div>
+        </div>
+        <div class="card-foot">
+          <div class="card-price">Any</div>
+          <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+        </div>
+      </article>
+
+      <article class="menu-card reveal">
+        <div class="menu-tags">
+          <span class="tag blue">Sponsor</span>
+        </div>
+        <div class="card-media">
+          <img src="images/Screenshot_20260221-113036~2.png" alt="Sponsor plan visual" style="width:100%; height:100%; object-fit: cover; border-radius: 18px;">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Back the Mission</div>
+          <div class="card-desc">Help fund tutorials, tools, and future features so more students can get support globally.</div>
+        </div>
+        <div class="card-foot">
+          <div class="card-price">Any</div>
+          <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
+        </div>
+      </article>
     </div>
-    <div class="card-media">
-      <img src="images/Screenshot_20260221-113036~2.png" alt="Sponsor plan visual" style="width:100%; height:100%; object-fit: cover; border-radius: 18px;">
-    </div>
-    <div class="card-body">
-      <div class="card-title">Back the Mission</div>
-      <div class="card-desc">Help fund tutorials, tools, and future features so more students can get support globally.</div>
-    </div>
-    <div class="card-foot">
-      <div class="card-price">Any</div>
-      <a class="select-btn" href="https://paystack.shop/pay/inkroom">Select</a>
-    </div>
-  </article>
-</div>
+  </section>
 
   <!-- FINAL CTA -->
   <section class="final-cta">
     <div class="cta-box reveal glass">
       <h3>Ready to join the room?</h3>
       <p>Become part of a global network of students helping each other grow.</p>
-      <a class="cta-btn glow-btn" href="https://t.me/yourinkroom">
-        Open Telegram Channel
-      </a>
+      <a class="cta-btn glow-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
     </div>
   </section>
 
@@ -661,7 +601,6 @@
     Built for students, by students — <span>INK ROOM</span>
   </footer>
 
-  <!-- APPLE-LEVEL JS ANIMATIONS -->
   <script>
     // Scroll reveal observer
     const observer = new IntersectionObserver(entries => {
@@ -676,9 +615,7 @@
     const parallaxEls = document.querySelectorAll('.parallax');
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY * 0.08;
-      parallaxEls.forEach(el =>
-        el.style.setProperty('--parallax', scrolled + 'px')
-      );
+      parallaxEls.forEach(el => el.style.setProperty('--parallax', scrolled + 'px'));
     });
 
     // Magnetic CTA effect
@@ -690,42 +627,40 @@
         const y = e.clientY - rect.top - rect.height / 2;
         btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0,0)';
-      });
+      btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
     });
 
-    // MENU LOGIC (hamburger)
+    /* ===== ONLY MENU JS CHANGED ===== */
     const menu = document.getElementById('menu');
     const overlay = document.getElementById('overlay');
     const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
-
-    function openPanel() {
-      menu.classList.add('open');
-      overlay.classList.add('show');
-      openMenu.classList.add('is-open');
-    }
-
-    function closePanel() {
-      menu.classList.remove('open');
-      overlay.classList.remove('show');
-      openMenu.classList.remove('is-open');
-    }
 
     openMenu.addEventListener('click', () => {
-      menu.classList.contains('open') ? closePanel() : openPanel();
+      menu.classList.add('open');
+      overlay.classList.add('show');
     });
 
-    closeMenu?.addEventListener('click', closePanel);
-    overlay?.addEventListener('click', closePanel);
+    overlay.addEventListener('click', () => {
+      menu.classList.remove('open');
+      overlay.classList.remove('show');
+    });
 
-    menu?.querySelectorAll('[data-close]')
-      .forEach(a => a.addEventListener('click', closePanel));
+    // Close menu when clicking any menu link
+    document.querySelectorAll('.sheet-grid a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+    });
 
-    window.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closePanel();
+    // ESC closes menu
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        menu.classList.remove('open');
+        overlay.classList.remove('show');
+      }
     });
   </script>
+
 </body>
 </html>
