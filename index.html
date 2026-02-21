@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INK ROOM — Global Student Support</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">
-
-  <style>
+  <title>INK ROOM — Global Student Support</title>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/Screenshot_20260221-113036~2.png">  <style>
     :root {
       --dark: #020617;
       --navy: #020b1f;
@@ -22,6 +14,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -30,7 +23,9 @@
       overflow-x: hidden;
     }
 
-    /* FULL HERO BACKGROUND */
+    .container { width: min(1100px, 92%); margin: auto; }
+
+    /* HERO (UNCHANGED) */
     .hero {
       min-height: 100vh;
       background: linear-gradient(rgba(2,6,23,0.75), rgba(2,6,23,0.85)),
@@ -40,11 +35,6 @@
       justify-content: center;
       padding: 2rem 1.2rem;
       position: relative;
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin: auto;
     }
 
     /* NAV */
@@ -57,6 +47,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 10;
     }
 
     .logo {
@@ -65,20 +56,34 @@
       letter-spacing: 2px;
     }
 
-    .cta-btn {
-      background: var(--blue);
-      color: white;
-      padding: 0.75rem 1.3rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
+    /* HAMBURGER ICON */
+    .hamburger {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(2,6,23,0.35);
+      backdrop-filter: blur(12px);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
       transition: 0.25s ease;
-      box-shadow: 0 10px 25px rgba(59,130,246,0.35);
     }
 
-    .cta-btn:hover {
-      background: var(--soft-blue);
-      transform: translateY(-2px);
+    .hamburger:hover { transform: translateY(-2px); }
+
+    .bars {
+      width: 18px;
+      height: 12px;
+      display: grid;
+      gap: 3px;
+    }
+
+    .bars span {
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+      display: block;
     }
 
     /* HERO TEXT */
@@ -107,254 +112,157 @@
       max-width: 600px;
     }
 
-    /* SECTION BELOW HERO */
+    .cta-btn {
+      background: var(--blue);
+      color: white;
+      padding: 0.75rem 1.3rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 25px rgba(59,130,246,0.35);
+      display: inline-block;
+    }
+
+    .cta-btn:hover { background: var(--soft-blue); transform: translateY(-2px); }
+
+    /* SLIDE MENU */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      z-index: 40;
+    }
+
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(320px, 85vw);
+      background: rgba(2,6,23,0.9);
+      backdrop-filter: blur(16px);
+      border-left: 1px solid rgba(255,255,255,0.08);
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+      z-index: 50;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .menu-panel.open { transform: translateX(0); }
+
+    .menu-panel a {
+      text-decoration: none;
+      color: white;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.25s ease;
+    }
+
+    .menu-panel a:hover {
+      background: rgba(59,130,246,0.15);
+      transform: translateX(-3px);
+    }
+
+    /* SECTIONS */
     .section {
       padding: 4rem 1.2rem;
       background: linear-gradient(180deg, #020617, #020b1f);
-    }
-
-    .section-inner {
-      width: min(900px, 92%);
-      margin: auto;
       text-align: center;
     }
 
-    .section h2 {
-      font-size: 1.9rem;
-      margin-bottom: 1.2rem;
+    .section p { color: var(--gray); }
+
+    /* PRICING */
+    .pricing {
+      padding: 4rem 1.2rem;
+      background: #01040f;
     }
 
-    .section p {
-      color: var(--gray);
-      line-height: 1.7;
-    }
-
-    /* FINAL CTA */
-    .final-cta {
-      padding: 3rem 1.2rem 4rem;
-      background: var(--dark);
-      text-align: center;
-    }
-
-    .cta-box {
-      background: linear-gradient(135deg, #020617, #0f172a);
-      border-radius: 18px;
-      padding: 2.8rem 2rem;
-      max-width: 700px;
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 1rem;
+      max-width: 1100px;
       margin: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      position: relative;
-      overflow: hidden;
     }
 
-    .cta-box::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(59,130,246,0.4), transparent);
-      top: -60px;
-      right: -60px;
-      animation: glow 6s linear infinite;
-    }
-
-    @keyframes glow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .cta-box h3 {
-      font-size: 1.7rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .cta-box p {
-      color: var(--gray);
-      margin-bottom: 1.5rem;
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem;
+      border-radius: 16px;
     }
 
     footer {
       text-align: center;
-      padding: 2rem 0 2.5rem;
+      padding: 2rem 0;
       font-size: 0.9rem;
       color: #94a3b8;
-      background: var(--dark);
     }
-
-    footer span { color: white; font-weight: 600; }
-
-    /* MOBILE */
-    @media (max-width: 600px) {
-      nav { top: 18px; }
-      .hero { padding-top: 5rem; }
-    }
-  </style>
-
-  <!-- APPLE-LEVEL ANIMATION STYLES -->
-  <style>
-    /* Smooth scrolling */
-    html { scroll-behavior: smooth; }
-
-    /* Scroll reveal system */
-    .reveal {
-      opacity: 0;
-      transform: translateY(60px) scale(0.98);
-      transition: opacity 0.9s cubic-bezier(.22,1,.36,1),
-                  transform 0.9s cubic-bezier(.22,1,.36,1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    /* Apple-style blur panels */
-    .glass {
-      backdrop-filter: blur(18px);
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
-    }
-
-    /* Premium glow */
-    .glow-btn {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glow-btn::after {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle, rgba(96,165,250,0.4), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .glow-btn:hover::after { opacity: 1; }
-
-    /* Floating parallax image */
-    .parallax {
-      transform: translateY(var(--parallax, 0));
-      transition: transform 0.2s linear;
-    }
-
-    /* Section spacing refinement */
-    .section-inner { position: relative; z-index: 2; }
-  </style>
-</head>
-
-<body>
-
-  <!-- HERO -->
-  <section class="hero">
+  </style></head><body>  <div class="overlay" id="overlay"></div>  <!-- MENU PANEL -->  <aside class="menu-panel" id="menu">
+    <a href="#top">Home</a>
+    <a href="about.html">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="payments.html">Payments</a>
+    <a href="https://t.me/yourinkroom">Telegram</a>
+  </aside>  <!-- HERO -->  <section class="hero" id="top">
     <nav>
       <div class="logo">INK ROOM</div>
-      <a class="cta-btn" href="https://t.me/yourinkroom">Join</a>
-    </nav>
+      <div class="hamburger" id="openMenu">
+        <div class="bars"><span></span><span></span><span></span></div>
+      </div>
+    </nav><div class="container">
+  <div class="hero-content">
+    <h1>A global study space that never closes.</h1>
+    <p>
+      INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
+    </p>
+    <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+  </div>
+</div>
 
-    <div class="container">
-      <div class="hero-content">
-        <h1>A global study space that never closes.</h1>
-        <p>
-          INK ROOM is where students from anywhere in the world come to get help, finish assignments, ask questions, and stay accountable — all in one supportive community.
-        </p>
-        <a class="cta-btn" href="https://t.me/yourinkroom">Enter the Room</a>
+  </section>  <!-- PRICING -->  <section class="pricing" id="pricing">
+    <h2 style="text-align:center;margin-bottom:1rem;">Pricing</h2>
+    <div class="pricing-grid">
+      <div class="card">
+        <h3>Free</h3>
+        <p>Join the Telegram community and study with everyone.</p>
+      </div>
+      <div class="card">
+        <h3>Pro Support</h3>
+        <p>Access structured prompts and premium drops.</p>
+      </div>
+      <div class="card">
+        <h3>Sponsor</h3>
+        <p>Support the mission and help students globally.</p>
       </div>
     </div>
-  </section>
-
-  <!-- MISSION -->
-  <section class="section">
-    <div class="section-inner reveal glass" style="padding:2.5rem; border-radius:22px;">
-      <h2>Our Mission</h2>
-      <p>
-        We believe no student should feel stuck, isolated, or unsupported while learning. INK ROOM exists to create a digital study environment where help is always within reach — regardless of country, school, or background. If you have internet access, you have a seat in the room.
-      </p>
-    </div>
-  </section>
-
-  <!-- COMMUNITY SECTION -->
-  <section class="section" style="background: linear-gradient(180deg,#020b1f,#01040f); position:relative; overflow:hidden;">
-    <div class="section-inner reveal" style="display:grid; gap:2.5rem; align-items:center; grid-template-columns: repeat(auto-fit,minmax(260px,1fr));">
-      
-      <div class="text-block" style="text-align:left; animation: fadeLeft 1s ease forwards; opacity:0;">
-        <h2 style="margin-bottom:0.8rem;">A space built for real students</h2>
-        <p>
-          INK ROOM isn’t just another study group. It’s a living digital room where students show up daily to ask questions, share wins, drop resources, and help each other stay consistent.
-        </p>
-        <p style="margin-top:0.8rem;">
-          Whether you're cramming for exams, building discipline, or just trying to stay motivated — you're not doing it alone anymore.
-        </p>
-      </div>
-
-      <div class="image-block parallax" style="position:relative; animation: float 6s ease-in-out infinite;">
-        <img src="images/Screenshot_20260221-113036~2.png" alt="INK ROOM community" style="width:100%; border-radius:18px; box-shadow:0 30px 70px rgba(0,0,0,0.5);">
-      </div>
-
-    </div>
-  </section>
-
-  <style>
-    @keyframes fadeLeft {
-      from { transform: translateX(-40px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0); }
-    }
-  </style>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta">
-    <div class="cta-box reveal glass">
-      <h3>Ready to join the room?</h3>
-      <p>Become part of a global network of students helping each other grow.</p>
-      <a class="cta-btn glow-btn" href="https://t.me/yourinkroom">Open Telegram Channel</a>
-    </div>
-  </section>
-
-  <footer>
+  </section>  <footer>
     Built for students, by students — <span>INK ROOM</span>
-  </footer>
+  </footer>  <script>
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+    const open = document.getElementById('openMenu');
 
+    open.onclick = () => {
+      menu.classList.add('open');
+      overlay.classList.add('show');
+    };
 
-  <!-- APPLE-LEVEL JS ANIMATIONS -->
-  <script>
-    // Scroll reveal observer
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Parallax scroll (very smooth)
-    const parallaxEls = document.querySelectorAll('.parallax');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY * 0.08;
-      parallaxEls.forEach(el => {
-        el.style.setProperty('--parallax', scrolled + 'px');
-      });
-    });
-
-    // Magnetic CTA effect (subtle Apple feel)
-    const btns = document.querySelectorAll('.cta-btn');
-    btns.forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0,0)';
-      });
-    });
-  </script>
-</body>
+    overlay.onclick = () => {
+      menu.classList.remove('open');
+      overlay.classList.remove('show');
+    };
+  </script></body>
 </html>
